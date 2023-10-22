@@ -21,12 +21,12 @@
 
 	let suitcase_images: Array<suitcase_image> = [
 		{
-			src: '/images/matkalaukku/av.jpg',
+			src: 'images/matkalaukku/av.jpg',
 			title: 'Valosuunnittelu',
 			description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod temporincididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrudexercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute iruredolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseruntmollit anim id est laborum.`
 		},
 		{
-			src: '/images/matkalaukku/av.jpg',
+			src: 'images/matkalaukku/av.jpg',
 			title: 'Valosuunnittelu',
 			description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod temporincididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrudexercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute iruredolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseruntmollit anim id est laborum.`
 		}
@@ -64,19 +64,19 @@
 <svelte:window bind:scrollY={y} />
 {#if intro_done}
 	<div class="background" in:slide|global={{ duration: 650, axis: 'x' }}>
-		<Img src="/images/matkalaukku/av.jpg" top="40vh" left="0" width="55vw" height="35vh" />
-		<Img src="/images/matkalaukku/rakentelu.jpg" top="0" left="0" width="60vw" height="40vh" />
-		<Img src="/images/matkalaukku/sailing.jpg" top="60vh" left="50vw" width="20vw" height="60vh" />
+		<Img src="images/matkalaukku/av.jpg" top="40vh" left="0" width="55vw" height="35vh" />
+		<Img src="images/matkalaukku/rakentelu.jpg" top="0" left="0" width="60vw" height="40vh" />
+		<Img src="images/matkalaukku/sailing.jpg" top="60vh" left="50vw" width="20vw" height="60vh" />
 		<Img
-			src="/images/matkalaukku/valokuvaus.jpg"
+			src="images/matkalaukku/valokuvaus.jpg"
 			top="40vh"
 			left="70vw"
 			width="30vw"
 			height="60vh"
 		/>
-		<Img src="/images/matkalaukku/millie.jpg" top="0" left="60vw" width="40vw" height="45vh" />
-		<Img src="/images/matkalaukku/talvi.jpg" top="30vh" left="40vw" width="35vw" height="30vh" />
-		<Img src="/images/matkalaukku/vava.jpg" top="75vh" left="0" width="50vw" height="30vh" />
+		<Img src="images/matkalaukku/millie.jpg" top="0" left="60vw" width="40vw" height="45vh" />
+		<Img src="images/matkalaukku/talvi.jpg" top="30vh" left="40vw" width="35vw" height="30vh" />
+		<Img src="images/matkalaukku/vava.jpg" top="75vh" left="0" width="50vw" height="30vh" />
 	</div>
 	<div class="fakebg" />
 {/if}
