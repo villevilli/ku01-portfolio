@@ -109,26 +109,32 @@
 	</div>
 </div>
 <!-- {#if intro_done} -->
-{#each suitcase_images as image, i}
-	<section class="section center">
-		<!-- {#if y > pageHeight * (i + 1 + 0.1) && y < pageHeight * (i + 1 + 0.4)} -->
-		<div class="image_explainer" style="transform: translate(0,{y - pageHeight * (i + 1.2)}px);">
-			<div transition:fly={{ x: -1000, duration: 1200 }} class="showcasedesc">
-				<h2>{image.title}</h2>
-				<p>
-					{@html hyphenateSync(image.description, { minWordLength: 7 })}
-				</p>
+<div>
+	<h2 class="suitcase_title">Visuaalinen matkalaukku</h2>
+	{#each suitcase_images as image, i}
+		<section class="section center">
+			<!-- {#if y > pageHeight * (i + 1 + 0.1) && y < pageHeight * (i + 1 + 0.4)} -->
+			<div
+				class="image_explainer {i % 2 == 0 ? '' : 'rev-explainer'}"
+				style="transform: translate(0,{y - pageHeight * (i + 1.2)}px);"
+			>
+				<div transition:fly={{ x: -1000, duration: 1200 }} class="showcasedesc">
+					<h3>{image.title}</h3>
+					<p class="showcasedescdesc">
+						{@html hyphenateSync(image.description, { minWordLength: 7 })}
+					</p>
+				</div>
+				<img
+					transition:fly={{ x: 1000, duration: 1200 }}
+					src={image.src}
+					alt="a light show"
+					class="showcaseimage"
+				/>
 			</div>
-			<img
-				transition:fly={{ x: 1000, duration: 1200 }}
-				src={image.src}
-				alt="a light show"
-				class="showcaseimage"
-			/>
-		</div>
-		<!-- {/if} -->
-	</section>
-{/each}
+			<!-- {/if} -->
+		</section>
+	{/each}
+</div>
 
 <!-- {/if} -->
 
@@ -149,6 +155,11 @@
 		height: 100%;
 		background-color: antiquewhite;
 		overflow-x: hidden;
+	}
+	.suitcase_title {
+		position: sticky;
+		top: 10vh;
+		margin-left: 10vw;
 	}
 	.center {
 		display: flex;
@@ -172,6 +183,7 @@
 		overflow-x: hidden;
 		overflow: hidden;
 	}
+
 	.fakebg {
 		scroll-snap-align: start;
 		box-sizing: border-box;
@@ -190,6 +202,9 @@
 		hyphens: manual;
 		max-width: 70vw;
 	}
+	.rev-explainer {
+		flex-direction: row-reverse;
+	}
 	.showcaseimage {
 		object-fit: cover;
 		min-width: 0;
@@ -199,7 +214,12 @@
 		box-sizing: border-box;
 		flex-shrink: 3;
 		min-width: 25%;
+		margin-left: 5%;
 		margin-right: 5%;
+	}
+
+	.showcasedescdesc {
+		overflow-y: scroll;
 	}
 
 	.intro {
@@ -221,11 +241,23 @@
 		background-color: antiquewhite;
 	}
 
-	@media (max-aspect-ratio: 2/3) {
+	@media (max-aspect-ratio: 4/3) {
+		.image_explainer {
+			max-width: 90vw;
+		}
+	}
+
+	@media (max-aspect-ratio: 5/6) {
 		.image_explainer {
 			flex-direction: column;
-			height: 80vh;
+			height: 95vh;
 			justify-content: flex-start;
+		}
+		.showcasedesc {
+			margin-right: 0;
+		}
+		.rev-explainer {
+			flex-direction: column;
 		}
 	}
 </style>
