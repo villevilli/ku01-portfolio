@@ -104,7 +104,7 @@
 
 <div class="intro" style="transform: translate(0,{-y * 0.2}vh);">
 	<div class="intro_text">
-		<h1>{BigHeaderContent}{cursor1}</h1>
+		<h1 class=".intro_text_text">{BigHeaderContent}{cursor1}</h1>
 		<h3>{SmallHeaderContent}{cursor2}</h3>
 	</div>
 </div>
@@ -112,12 +112,11 @@
 <div>
 	<h2 class="suitcase_title">Visuaalinen matkalaukku</h2>
 	{#each suitcase_images as image, i}
+		<section class="fakesection" />
 		<section class="section center">
 			<!-- {#if y > pageHeight * (i + 1 + 0.1) && y < pageHeight * (i + 1 + 0.4)} -->
-			<div
-				class="image_explainer {i % 2 == 0 ? '' : 'rev-explainer'}"
-				style="transform: translate(0,{y - pageHeight * (i + 1.2)}px);"
-			>
+			<div class="image_explainer {i % 2 == 0 ? '' : 'rev-explainer'}">
+				<!-- style="transform: translate(0,{y - pageHeight * (i + 1.2)}px);" -->
 				<div transition:fly={{ x: -1000, duration: 1200 }} class="showcasedesc">
 					<h3>{image.title}</h3>
 					<p class="showcasedescdesc">
@@ -175,11 +174,19 @@
 		width: 100vw;
 		height: 120vh;
 	}
-
-	.section {
+	.fakesection {
+		position: absolute;
 		width: 100vw;
 		height: 100vh;
 		scroll-snap-align: start;
+		overflow-x: hidden;
+		overflow: hidden;
+	}
+	.section {
+		position: sticky;
+		top: 0;
+		width: 100vw;
+		height: 100vh;
 		overflow-x: hidden;
 		overflow: hidden;
 	}
@@ -194,6 +201,8 @@
 	}
 
 	.image_explainer {
+		background-color: antiquewhite;
+
 		display: flex;
 		justify-content: space-between;
 		width: 80vw;
@@ -228,6 +237,7 @@
 		position: absolute;
 		margin: 0;
 		top: 30vh;
+		container-name: title;
 	}
 
 	.intro_text {
@@ -239,6 +249,13 @@
 		margin-bottom: 0;
 		width: fit-content;
 		background-color: antiquewhite;
+	}
+
+	@container (min-width: 268px) {
+		.intro_text_text {
+			font-size: 2em;
+			border: solid red 1px;
+		}
 	}
 
 	@media (max-aspect-ratio: 4/3) {
@@ -258,6 +275,10 @@
 		}
 		.rev-explainer {
 			flex-direction: column;
+		}
+		.intro_text {
+			margin: 1em;
+			margin-bottom: 0;
 		}
 	}
 </style>
