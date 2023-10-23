@@ -157,7 +157,7 @@
 	}
 	.suitcase_title {
 		position: sticky;
-		top: 10vh;
+		top: 8vh;
 		margin-left: 10vw;
 	}
 	.center {
@@ -267,11 +267,13 @@
 	@media (max-aspect-ratio: 5/6) {
 		.image_explainer {
 			flex-direction: column;
-			height: 95vh;
+			margin-top: 13vh;
+			height: 80vh;
 			justify-content: flex-start;
 		}
 		.showcasedesc {
 			margin-right: 0;
+			margin-left: 0;
 		}
 		.rev-explainer {
 			flex-direction: column;
