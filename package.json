@@ -33,6 +33,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"hyphen": "^1.7.0"
+		"hyphen": "^1.7.0",
+		"svelte-portal": "^2.2.0"
 	}
 }

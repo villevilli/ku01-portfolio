@@ -112,15 +112,13 @@
 		<h3>{SmallHeaderContent}{cursor2}</h3>
 	</div>
 </div>
-<!-- {#if intro_done} -->
+
 <div>
 	<h2 class="suitcase_title">Visuaalinen matkalaukku</h2>
 	{#each suitcase_images as image, i}
 		<section class="fakesection" />
 		<section class="section center">
-			<!-- {#if y > pageHeight * (i + 1 + 0.1) && y < pageHeight * (i + 1 + 0.4)} -->
 			<div class="image_explainer {i % 2 == 0 ? '' : 'rev-explainer'}">
-				<!-- style="transform: translate(0,{y - pageHeight * (i + 1.2)}px);" -->
 				<div transition:fly={{ x: -1000, duration: 1200 }} class="showcasedesc">
 					<h3>{image.title}</h3>
 					<p class="showcasedescdesc">
@@ -129,12 +127,9 @@
 				</div>
 				<Maximizableimage src={image.src} alt="a light show" class="showcaseimage" />
 			</div>
-			<!-- {/if} -->
 		</section>
 	{/each}
 </div>
-
-<!-- {/if} -->
 
 <style>
 	:global(html) {
@@ -145,7 +140,7 @@
 		min-height: 100%;
 
 		scroll-behavior: smooth;
-		scroll-snap-type: y mandatory;
+		scroll-snap-type: y proximity;
 	}
 	:global(body) {
 		margin: 0;
@@ -206,7 +201,7 @@
 
 	.image_explainer {
 		background-color: antiquewhite;
-
+		z-index: 100;
 		display: flex;
 		justify-content: space-between;
 		width: 80vw;

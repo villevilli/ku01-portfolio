@@ -2,6 +2,7 @@
 	import { browser } from '$app/environment';
 	import { expoOut, quintOut } from 'svelte/easing';
 	import { crossfade, fade } from 'svelte/transition';
+	import Portal from 'svelte-portal/src/Portal.svelte';
 
 	let className = '';
 
@@ -11,6 +12,8 @@
 	export { className as class };
 
 	let expanded = false;
+
+	function none() {}
 
 	const [send, receive] = crossfade({
 		duration: 700,
@@ -30,13 +33,15 @@
 		on:click={() => (expanded = true)}
 	/>
 {:else}
-	<div
-		transition:fade={{ duration: 700, easing: quintOut }}
-		class="overlay"
-		on:click={() => (expanded = false)}
-	>
-		<img class="open" in:receive={{ key: 1 }} out:send={{ key: 1 }} {alt} {src} />
-	</div>
+	<Portal target="body">
+		<div
+			transition:fade={{ duration: 700, easing: quintOut }}
+			class="overlay"
+			on:click={() => (expanded = false)}
+		>
+			<img class="open" in:receive={{ key: 1 }} out:send={{ key: 1 }} {alt} {src} />
+		</div>
+	</Portal>
 {/if}
 
 <style>
@@ -47,6 +52,8 @@
 	}
 	.closed {
 		cursor: zoom-in;
+		max-width: 100%;
+		max-height: 100%;
 	}
 	.overlay {
 		background-color: rgb(0, 0, 0, 60%);
