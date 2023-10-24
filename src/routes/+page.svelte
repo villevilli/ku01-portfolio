@@ -2,7 +2,17 @@
 	import { fly, slide } from 'svelte/transition';
 	import Img from '$lib/img.svelte';
 	import { setResponse } from '@sveltejs/kit/node';
+	import av from '$lib/images/matkalaukku/av.jpg';
+	import millie from '$lib/images/matkalaukku/millie.jpg';
+	import rakentelu from '$lib/images/matkalaukku/rakentelu.jpg';
+	import rinkeliburgeri from '$lib/images/matkalaukku/rinkeliburgeri.jpg';
+	import sailing from '$lib/images/matkalaukku/sailing.jpg';
+	import talvi from '$lib/images/matkalaukku/talvi.jpg';
+	import valkouvaus from '$lib/images/matkalaukku/valokuvaus.jpg';
+	import vava from '$lib/images/matkalaukku/vava.jpg';
+
 	import pkg from 'hyphen/fi';
+	import Maximizableimage from '$lib/maximizableimage.svelte';
 	const { hyphenateSync } = pkg;
 
 	let skipIntro = false;
@@ -24,17 +34,17 @@
 
 	let suitcase_images: Array<suitcase_image> = [
 		{
-			src: 'images/matkalaukku/av.jpg',
+			src: av,
 			title: 'Valosuunnittelu',
 			description: `Kuvassa on otaniemen lukion vuoden 2023 vappugaalan lava. Olin mukana tapahtuman suunnittelussa, ja koko visuaalisen ilmeen luomisessa. Vaikka tapahtumatekniikan toteuttamisen voisi usein ajatella vain tylsäksi tekniseksi projektiksi, siinä pääsee todellisuudessa harjoittamaan omaa luovuuttan laajasti ja kiinostavasti, kun täytyy työskennellä projektin budjetin rajoissa luoden silti uniikin ja ikimuistoisen tapahtuman. Nautin itse tästä luovasta prosessista ja voisin nähdä itseni työskentelemässä alalla tulevaisuudessa.`
 		},
 		{
-			src: 'images/matkalaukku/vava.jpg',
+			src: vava,
 			title: 'Partio',
 			description: `Partio on aina ollut tärkeä osa elämääni. Olen harrastanut sitä jo pienestä lapsesta asti. Tunnen myös monia hyviä ystäviäni juuri partion kautta. Kuvassa on vuoden 2016 kohtaaminen, ja lippukuntani vaaran vaeltajat, jonka jäsen olen yhä.`
 		},
 		{
-			src: 'images/matkalaukku/valokuvaus.jpg',
+			src: valkouvaus,
 			title: 'Valokuvaus',
 			description: `Melkein jokainen matkalaukun kuvista on itseni kuvaama. Nautin valokuvaamisesta, sillä koen sen rauhalliseksi tekemiseksi, jossa pääsee samaan aikaan nauttimaan maailman yleisestä kauneudesta. Kuvassa on ystäväni, kuka harrastaa cosplayta Sinebrychoffin taidemuseossa helsingissä. Kuva on luonnolisesti itseni ottama.`
 		}
@@ -72,32 +82,26 @@
 <svelte:head>
 	<title>KU01 Portfolio Ville Kujala</title>
 
-	<link rel="preload" as="image" href="images/matkalaukku/av.jpg" />
+	<!-- <link rel="preload" as="image" href="images/matkalaukku/av.jpg" />
 	<link rel="preload" as="image" href="images/matkalaukku/rakentelu.jpg" />
 	<link rel="preload" as="image" href="images/matkalaukku/sailing.jpg" />
 	<link rel="preload" as="image" href="images/matkalaukku/valokuvaus.jpg" />
 	<link rel="preload" as="image" href="images/matkalaukku/millie.jpg" />
 	<link rel="preload" as="image" href="images/matkalaukku/talvi.jpg" />
-	<link rel="preload" as="image" href="images/matkalaukku/vava.jpg" />
+	<link rel="preload" as="image" href="images/matkalaukku/vava.jpg" /> -->
 </svelte:head>
 
 <svelte:window bind:scrollY={y} bind:innerHeight={pageHeight} />
 
 {#if intro_done}
 	<div class="background" in:slide|global={{ duration: 650, axis: 'x' }}>
-		<Img src="images/matkalaukku/av.jpg" top="40vh" left="0" width="55vw" height="35vh" />
-		<Img src="images/matkalaukku/rakentelu.jpg" top="0" left="0" width="60vw" height="40vh" />
-		<Img src="images/matkalaukku/sailing.jpg" top="60vh" left="50vw" width="20vw" height="60vh" />
-		<Img
-			src="images/matkalaukku/valokuvaus.jpg"
-			top="40vh"
-			left="70vw"
-			width="30vw"
-			height="60vh"
-		/>
-		<Img src="images/matkalaukku/millie.jpg" top="0" left="60vw" width="40vw" height="45vh" />
-		<Img src="images/matkalaukku/talvi.jpg" top="30vh" left="40vw" width="35vw" height="30vh" />
-		<Img src="images/matkalaukku/vava.jpg" top="75vh" left="0" width="50vw" height="30vh" />
+		<Img src={av} top="40vh" left="0" width="55vw" height="35vh" />
+		<Img src={rakentelu} top="0" left="0" width="60vw" height="40vh" />
+		<Img src={sailing} top="60vh" left="50vw" width="20vw" height="60vh" />
+		<Img src={valkouvaus} top="40vh" left="70vw" width="30vw" height="60vh" />
+		<Img src={millie} top="0" left="60vw" width="40vw" height="45vh" />
+		<Img src={talvi} top="30vh" left="40vw" width="35vw" height="30vh" />
+		<Img src={vava} top="75vh" left="0" width="50vw" height="30vh" />
 	</div>
 {/if}
 <div class="fakebg" />
@@ -123,12 +127,7 @@
 						{@html hyphenateSync(image.description, { minWordLength: 7 })}
 					</p>
 				</div>
-				<img
-					transition:fly={{ x: 1000, duration: 1200 }}
-					src={image.src}
-					alt="a light show"
-					class="showcaseimage"
-				/>
+				<Maximizableimage src={image.src} alt="a light show" class="showcaseimage" />
 			</div>
 			<!-- {/if} -->
 		</section>
@@ -154,6 +153,11 @@
 		height: 100%;
 		background-color: antiquewhite;
 		overflow-x: hidden;
+	}
+	:global(.showcaseimage) {
+		object-fit: cover;
+		min-width: 0;
+		min-height: 0;
 	}
 	.suitcase_title {
 		position: sticky;
@@ -214,11 +218,7 @@
 	.rev-explainer {
 		flex-direction: row-reverse;
 	}
-	.showcaseimage {
-		object-fit: cover;
-		min-width: 0;
-		min-height: 0;
-	}
+
 	.showcasedesc {
 		box-sizing: border-box;
 		flex-shrink: 3;
@@ -228,7 +228,7 @@
 	}
 
 	.showcasedescdesc {
-		overflow-y: scroll;
+		overflow-y: auto;
 	}
 
 	.intro {
@@ -249,13 +249,6 @@
 		margin-bottom: 0;
 		width: fit-content;
 		background-color: antiquewhite;
-	}
-
-	@container (min-width: 268px) {
-		.intro_text_text {
-			font-size: 2em;
-			border: solid red 1px;
-		}
 	}
 
 	@media (max-aspect-ratio: 4/3) {
