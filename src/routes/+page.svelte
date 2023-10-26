@@ -47,6 +47,11 @@
 			src: valkouvaus,
 			title: 'Valokuvaus',
 			description: `Melkein jokainen matkalaukun kuvista on itseni kuvaama. Nautin valokuvaamisesta, sillä koen sen rauhalliseksi tekemiseksi, jossa pääsee samaan aikaan nauttimaan maailman yleisestä kauneudesta. Kuvassa on ystäväni, kuka harrastaa cosplayta Sinebrychoffin taidemuseossa helsingissä. Kuva on luonnolisesti itseni ottama.`
+		},
+		{
+			src: rinkeliburgeri,
+			title: 'Rinkeliburgeri',
+			description: `Kuvassa on erään päivän aamupalani. Valitettavasti se ei löytäny tietään kannelle sillä kuvassa on erilainen estetiikka muihin kuviin verrattuna. Kuitenkin jokaisen nuoren elämään liittyy kuvan kaltaiset nopeat somepostaukset joten tämäkin on osa minun elämäni visuaalista olemusta.`
 		}
 	];
 

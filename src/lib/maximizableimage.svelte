@@ -19,10 +19,14 @@
 		duration: 700,
 		easing: quintOut
 	});
-	console.log(className);
 </script>
 
+<svelte:body style={expanded ? 'overflow: none' : ''} />
+
+<!-- TODO FIX BEING ABLE TO SCROLL ZOOMED IN -->
 {#if !expanded}
+	<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<img
 		in:receive={{ key: 1 }}
 		out:send={{ key: 1 }}
@@ -34,6 +38,8 @@
 	/>
 {:else}
 	<Portal target="body">
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		<div
 			transition:fade={{ duration: 700, easing: quintOut }}
 			class="overlay"
