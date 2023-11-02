@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
-	import { expoOut, quintOut } from 'svelte/easing';
+	import { quintOut } from 'svelte/easing';
 	import { crossfade, fade } from 'svelte/transition';
 	import Portal from 'svelte-portal/src/Portal.svelte';
 
@@ -9,7 +8,6 @@
 	export let alt = '';
 	export let src = '';
 	export let style = '';
-	export { className as class };
 
 	let expanded = false;
 

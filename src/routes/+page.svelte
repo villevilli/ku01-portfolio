@@ -26,13 +26,13 @@
 	let cursor2 = '';
 	let y: number;
 
-	interface suitcase_image {
+	interface image_data {
 		src: string;
 		title: string;
 		description: string;
 	}
 
-	let suitcase_images: Array<suitcase_image> = [
+	let suitcase_images: Array<image_data> = [
 		{
 			src: av,
 			title: 'Valosuunnittelu',
@@ -119,7 +119,7 @@
 </div>
 
 <div>
-	<h2 class="suitcase_title">Visuaalinen matkalaukku</h2>
+	<h2 class="title">Visuaalinen matkalaukku</h2>
 	{#each suitcase_images as image, i}
 		<section class="fakesection" />
 		<section class="section center">
@@ -135,6 +135,18 @@
 		</section>
 	{/each}
 </div>
+<div>
+	<h2 class="title ghosts_title">Otiksen Aaveita</h2>
+	<section class="ghosts section">
+		<div class="center ghosts_div">Ghosts in progress</div>
+	</section>
+</div>
+<div>
+	<h2 class="title">Katukuvausta</h2>
+	<section class="section">
+		<div class="center">Todo: Add pictures</div>
+	</section>
+</div>
 
 <style>
 	:global(html) {
@@ -145,7 +157,7 @@
 		min-height: 100%;
 
 		scroll-behavior: smooth;
-		scroll-snap-type: y proximity;
+		scroll-snap-type: y none;
 	}
 	:global(body) {
 		margin: 0;
@@ -159,15 +171,25 @@
 		min-width: 0;
 		min-height: 0;
 	}
-	.suitcase_title {
+	.ghosts {
+		width: 100vh;
+		height: 135vw;
+		scroll-snap-align: start;
+		box-sizing: border-box;
+	}
+	.title {
 		position: sticky;
 		top: 8vh;
 		margin-left: 10vw;
+	}
+	.ghosts_div {
 	}
 	.center {
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		width: 100%;
+		height: 100%;
 	}
 	.background {
 		scroll-snap-align: start;
@@ -181,7 +203,7 @@
 	.fakesection {
 		position: absolute;
 		width: 100vw;
-		height: 100vh;
+		height: 120vh;
 		scroll-snap-align: start;
 		overflow-x: hidden;
 		overflow: hidden;
