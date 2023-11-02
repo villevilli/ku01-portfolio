@@ -2,6 +2,7 @@
 	import { quintOut } from 'svelte/easing';
 	import { crossfade, fade } from 'svelte/transition';
 	import Portal from 'svelte-portal/src/Portal.svelte';
+	import { browser } from '$app/environment';
 
 	let className = '';
 
@@ -11,7 +12,7 @@
 
 	let expanded = false;
 
-	function none() {}
+	$: if (browser) document.body.style.overflowY = expanded ? 'hidden' : '';
 
 	const [send, receive] = crossfade({
 		duration: 700,
@@ -19,7 +20,7 @@
 	});
 </script>
 
-<svelte:body style={expanded ? 'overflow: none' : ''} />
+<!-- <svelte:body style={expanded ? 'overflow: none' : ''} /> -->
 
 <!-- TODO FIX BEING ABLE TO SCROLL ZOOMED IN -->
 {#if !expanded}
