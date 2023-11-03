@@ -125,7 +125,7 @@
 		},
 		{
 			src: tuntematon,
-			tall: true,
+			wide: true,
 			description:
 				'Tuntematon ja tunnistamaton ihminen istumassa Ainoassa olevan taidenäytöksen keskellä',
 			alt: ''
