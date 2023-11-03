@@ -9,6 +9,7 @@
 	export let alt = '';
 	export let src = '';
 	export let style = '';
+	export let description: string;
 
 	let expanded = false;
 
@@ -44,7 +45,14 @@
 			class="overlay"
 			on:click={() => (expanded = false)}
 		>
-			<img class="open" in:receive={{ key: 1 }} out:send={{ key: 1 }} {alt} {src} />
+			<div class="flex">
+				<img class="open" in:receive={{ key: 1 }} out:send={{ key: 1 }} {alt} {src} />
+				{#if description}
+					<div class="description" on:click|stopPropagation={() => ({})}>
+						<p>{description}</p>
+					</div>
+				{/if}
+			</div>
 		</div>
 	</Portal>
 {/if}
@@ -54,6 +62,7 @@
 		object-fit: scale-down;
 		max-width: 100%;
 		max-height: 100%;
+		min-height: 0;
 	}
 	.closed {
 		cursor: zoom-in;
@@ -69,8 +78,32 @@
 		left: 0;
 		z-index: 100;
 		display: flex;
+		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		cursor: zoom-out;
+		padding: 3%;
+		box-sizing: border-box;
+	}
+	.flex {
+		height: 100%;
+		z-index: 100;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		box-sizing: border-box;
+	}
+	.description {
+		flex-shrink: 0;
+		box-sizing: border-box;
+		cursor: text;
+		background-color: antiquewhite;
+		margin: 10px;
+		width: 100%;
+	}
+	p {
+		margin: 15px;
+		box-sizing: border-box;
 	}
 </style>
