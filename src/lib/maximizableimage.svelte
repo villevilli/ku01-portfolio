@@ -4,13 +4,12 @@
 	import Portal from 'svelte-portal/src/Portal.svelte';
 	import { browser } from '$app/environment';
 
-	let className = '';
-
 	export let alt = '';
 	export let src = '';
 	export let style = '';
 	export let description: string;
 
+	let fullyOpen = false;
 	let expanded = false;
 
 	$: if (browser) document.body.style.overflowY = expanded ? 'hidden' : '';
@@ -21,41 +20,42 @@
 	});
 </script>
 
-<!-- <svelte:body style={expanded ? 'overflow: none' : ''} /> -->
-
-<!-- TODO FIX BEING ABLE TO SCROLL ZOOMED IN -->
-{#if !expanded}
-	<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-	<!-- svelte-ignore a11y-click-events-have-key-events -->
-	<img
-		in:receive={{ key: 1 }}
-		out:send={{ key: 1 }}
-		{alt}
-		{src}
-		class={$$props.class + ' closed'}
-		{style}
-		on:click={() => (expanded = true)}
-	/>
-{:else}
-	<Portal target="body">
+<div class={$$props.class + ' closed'} {style}>
+	{#if !expanded}
+		<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
-		<!-- svelte-ignore a11y-no-static-element-interactions -->
-		<div
-			transition:fade={{ duration: 700, easing: quintOut }}
-			class="overlay"
-			on:click={() => (expanded = false)}
-		>
-			<div class="flex">
-				<img class="open" in:receive={{ key: 1 }} out:send={{ key: 1 }} {alt} {src} />
-				{#if description}
-					<div class="description" on:click|stopPropagation={() => ({})}>
-						<p>{description}</p>
-					</div>
-				{/if}
+		<img
+			in:receive={{ key: 1 }}
+			out:send={{ key: 1 }}
+			{alt}
+			{src}
+			class={/*$$props.class +*/ ' closed'}
+			{style}
+			on:click={() => (expanded = true)}
+			on:outroend={() => (fullyOpen = true)}
+			on:introstart={() => (fullyOpen = false)}
+		/>
+	{:else}
+		<Portal target="body">
+			<!-- svelte-ignore a11y-click-events-have-key-events -->
+			<!-- svelte-ignore a11y-no-static-element-interactions -->
+			<div
+				transition:fade={{ duration: 700, easing: quintOut }}
+				class="overlay"
+				on:click={() => (expanded = false)}
+			>
+				<div class="flex">
+					<img class="open" in:receive={{ key: 1 }} out:send={{ key: 1 }} {alt} {src} />
+					{#if description}
+						<div class="description" on:click|stopPropagation={() => ({})}>
+							<p>{description}</p>
+						</div>
+					{/if}
+				</div>
 			</div>
-		</div>
-	</Portal>
-{/if}
+		</Portal>
+	{/if}
+</div>
 
 <style>
 	.open {
@@ -65,9 +65,12 @@
 		min-height: 0;
 	}
 	.closed {
+		object-fit: cover;
 		cursor: zoom-in;
 		max-width: 100%;
 		max-height: 100%;
+		width: 100%;
+		height: 100%;
 	}
 	.overlay {
 		background-color: rgb(0, 0, 0, 60%);
