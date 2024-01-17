@@ -24,6 +24,9 @@
 	import heijatus from '$lib/images/katukuvaus/heijastus_kavely.jpg';
 	import kaverpiari from '$lib/images/katukuvaus/kaveripari.jpg';
 
+	import kummituskadet from '$lib/images/aaveet/kummituskadet.jpg';
+	import viivaviisaus from '$lib/images/viivojajaviisautta/creativity&madness.jpg';
+
 	import pkg from 'hyphen/fi';
 	import Maximizableimage from '$lib/maximizableimage.svelte';
 	const { hyphenateSync } = pkg;
@@ -239,10 +242,25 @@
 		</section>
 	{/each}
 </div>
-<div>
+<div style="height: 210vh;">
 	<h2 class="title ghosts_title">Otiksen Aaveita</h2>
 	<section class="ghosts section">
-		<div class="center ghosts_div">Ghosts in progress</div>
+		<div class="image_explainer">
+			<div transition:fly={{ x: -1000, duration: 1200 }} class="showcasedesc">
+				<p class="showcasedescdesc">
+					{@html hyphenateSync(
+						'Kuvassa olevat hiilipiirtotekniikalla tehdyt kädet kurottavat ulos katosta.',
+						{ minWordLength: 7 }
+					)}
+				</p>
+			</div>
+			<Maximizableimage
+				src={kummituskadet}
+				description="Kädet kurottavat ulos ilmanvaihtokanavasta annellen jotaktua pelastamaan ne"
+				style="height: 100%; object-fit: contain;"
+			/>
+			<div />
+		</div>
 	</section>
 </div>
 <div>
@@ -297,6 +315,10 @@
 		scroll-snap-align: start;
 		box-sizing: border-box;
 	}
+	.ghosts_description {
+		margin: 10px;
+		box-sizing: border-box;
+	}
 	.title {
 		background-color: antiquewhite;
 		padding: 10px;
@@ -306,6 +328,9 @@
 		margin-left: 10vw;
 	}
 	.ghosts_div {
+		display: flex;
+		padding: 0% 10%;
+		box-sizing: border-box;
 	}
 	.center {
 		display: flex;
@@ -419,6 +444,12 @@
 	@media (max-width: 570px) {
 		:global(.tall-photo-thing) {
 			grid-column-end: auto;
+		}
+	}
+
+	@media (min-aspect-ratio: 5/6) {
+		.ghosts {
+			padding-top: 120px;
 		}
 	}
 
